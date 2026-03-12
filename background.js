@@ -1,23 +1,27 @@
-// background.js — gestione persistenza e applicazione tema
-
-// Carica e applica il tema salvato all'avvio
-browser.runtime.onStartup.addListener(applyStoredTheme);
-browser.runtime.onInstalled.addListener(applyStoredTheme);
-
-async function applyStoredTheme() {
-  const stored = await browser.storage.local.get("tbcTheme");
-  if (stored.tbcTheme) {
-    browser.theme.update(stored.tbcTheme);
-  }
+function getContrastColor(hex) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    return (luminance > 0.5) ? "#000000" : "#ffffff";
 }
 
-// Ascolta messaggi dal popup
-browser.runtime.onMessage.addListener((msg) => {
-  if (msg.action === "applyTheme") {
-    browser.theme.update(msg.theme);
-    browser.storage.local.set({ tbcTheme: msg.theme });
-  } else if (msg.action === "resetTheme") {
-    browser.theme.reset();
-    browser.storage.local.remove("tbcTheme");
-  }
-});
+function applyStoredTheme() {
+    browser.storage.local.get("savedColor").then((res) => {
+        if (res.savedColor) {
+            const color = res.savedColor;
+            const textColor = getContrastColor(color);
+            browser.theme.update({
+                colors: {
+                    frame: color,
+                    tab_background_text: textColor,
+                    toolbar_field_text: textColor,
+                    icons: textColor
+                }
+            });
+        }
+    });
+}
+
+// Applica al caricamento dell'estensione
+applyStoredTheme();

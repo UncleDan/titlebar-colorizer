@@ -1,30 +1,34 @@
 {
   "manifest_version": 2,
-  "name": "TitleBar Colorizer",
-  "version": "1.0.0",
-  "description": "Personalizza il colore della barra del titolo di LibreWolf con testo sempre leggibile",
-  "author": "TitleBar Colorizer",
-
-  "permissions": [
-    "theme"
-  ],
-
-  "browser_action": {
-    "default_popup": "popup/popup.html",
-    "default_title": "TitleBar Colorizer",
-    "default_icon": {
-      "48": "icons/icon48.png",
-      "96": "icons/icon96.png"
+  "name": "Titlebar Colorizer - Firefox, LibreWolf e Thunderbird",
+  "version": "0.1",
+  "author": "Daniele Lolli (UncleDan)",
+  "description": "Personalizza il colore della barra del titolo con calcolo automatico del contrasto per Firefox, LibreWolf e Thunderbird.",
+  "developer": {
+    "name": "Daniele Lolli (UncleDan)",
+    "url": "https://danielelolli.it" 
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "barra-titolo-pro@tuodominio.it",
+      "strict_min_version": "91.0"
     }
   },
-
+  "icons": {
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png"
+  },
+  "permissions": ["theme", "storage"],
   "background": {
     "scripts": ["background.js"],
     "persistent": false
   },
-
-  "icons": {
-    "48": "icons/icon48.png",
-    "96": "icons/icon96.png"
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "browser_action": {
+    "default_icon": "icons/icon-48.png",
+    "default_title": "Configure Titlebar"
   }
 }
