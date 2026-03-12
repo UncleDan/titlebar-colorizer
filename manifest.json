@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+  "name": "TitleBar Colorizer",
+  "version": "1.0.0",
+  "description": "Personalizza il colore della barra del titolo di LibreWolf con testo sempre leggibile",
+  "author": "TitleBar Colorizer",
+
+  "permissions": [
+    "theme"
+  ],
+
+  "browser_action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "TitleBar Colorizer",
+    "default_icon": {
+      "48": "icons/icon48.png",
+      "96": "icons/icon96.png"
+    }
+  },
+
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+
+  "icons": {
+    "48": "icons/icon48.png",
+    "96": "icons/icon96.png"
+  }
+}
