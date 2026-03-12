@@ -1,22 +1,22 @@
 {
   "manifest_version": 2,
   "name": "Titlebar Colorizer - Firefox, LibreWolf e Thunderbird",
-  "version": "0.1",
+  "version": "0.2",
   "author": "Daniele Lolli (UncleDan)",
-  "description": "Personalizza il colore della barra del titolo con calcolo automatico del contrasto per Firefox, LibreWolf e Thunderbird.",
+  "description": "Personalize the titlebar color with automatic contrast calculation for Firefox, LibreWolf and Thunderbird.",
   "developer": {
     "name": "Daniele Lolli (UncleDan)",
     "url": "https://danielelolli.it" 
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "barra-titolo-pro@tuodominio.it",
+      "id": "titlebar-colorizer-multi@uncledan.it",
       "strict_min_version": "91.0"
     }
   },
   "icons": {
-    "48": "icons/icon-48.png",
-    "96": "icons/icon-96.png"
+    "48": "icons/icon48.png",
+    "96": "icons/icon96.png"
   },
   "permissions": ["theme", "storage"],
   "background": {
@@ -28,7 +28,7 @@
     "open_in_tab": true
   },
   "browser_action": {
-    "default_icon": "icons/icon-48.png",
+    "default_icon": "icons/icon48.png",
     "default_title": "Configure Titlebar"
   }
 }
