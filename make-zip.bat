@@ -23,7 +23,7 @@ set "OUTPUT_ZIP=%SCRIPT_DIR%\dist\%FOLDER_NAME%-%VERSION%.zip"
 if exist "%OUTPUT_ZIP%" (
     set "COUNTER=1"
     :loop
-    set "OUTPUT_ZIP=%SCRIPT_DIR%\dist\%FOLDER_NAME%-%VERSION%-!COUNTER!.zip"
+    set "OUTPUT_ZIP=%SCRIPT_DIR%\dist\%FOLDER_NAME%-%VERSION%-!COUNTER!.xpi"
     if exist "!OUTPUT_ZIP!" (
         set /a COUNTER+=1
         goto loop
