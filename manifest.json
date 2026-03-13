@@ -13,8 +13,8 @@
       "id": "titlebar-colorizer-multi@uncledan.it",
       "strict_min_version": "142.0",
       "data_collection_permissions": {
-        "required": [],
-        "optional": []
+        "required": ["none"],
+        "optional": ["none"]
       }
     }
   },
