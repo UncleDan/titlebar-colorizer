@@ -45,5 +45,3 @@ if %ERRORLEVEL% equ 0 (
     echo.
     echo ERROR: 7-Zip failed with code %ERRORLEVEL%
 )
-
-pause
