@@ -37,7 +37,7 @@ echo.
 
 "C:\Program Files\7-Zip\7z.exe" a -tzip -mx=9 "%OUTPUT_ZIP%" "%SCRIPT_DIR%\*" ^
   -xr!"%~nx0" ^
-  -xr!".gitignore" ^
+  -x!".gitignore" ^
   -xr!"dist"
 
 if %ERRORLEVEL% equ 0 (
