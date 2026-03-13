@@ -36,9 +36,7 @@ echo Output  : %OUTPUT_ZIP%
 echo.
 
 "C:\Program Files\7-Zip\7z.exe" a -tzip -mx=9 "%OUTPUT_ZIP%" "%SCRIPT_DIR%\*" ^
-  -xr!"%~nx0" ^
-  -x!".gitignore" ^
-  -xr!"dist"
+  -xr@"%SCRIPT_DIR%\make-zip-exclusion.list"
 
 if %ERRORLEVEL% equ 0 (
     echo.
@@ -47,3 +45,5 @@ if %ERRORLEVEL% equ 0 (
     echo.
     echo ERROR: 7-Zip failed with code %ERRORLEVEL%
 )
+
+pause
