@@ -19,7 +19,7 @@ if "%VERSION%"=="" (
 if not exist "%SCRIPT_DIR%\dist" mkdir "%SCRIPT_DIR%\dist"
 
 :: Build output path, increment suffix if file already exists
-set "OUTPUT_ZIP=%SCRIPT_DIR%\dist\%FOLDER_NAME%-%VERSION%.zip"
+set "OUTPUT_ZIP=%SCRIPT_DIR%\dist\%FOLDER_NAME%-%VERSION%.xpi"
 if exist "%OUTPUT_ZIP%" (
     set "COUNTER=1"
     :loop
