@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Titlebar Colorizer Multi",
-  "version": "0.7",
+  "version": "0.8",
   "author": "Daniele Lolli (UncleDan)",
   "description": "Customize the titlebar color with automatic contrast calculation for Firefox, LibreWolf and Thunderbird.",
   "developer": {
@@ -13,8 +13,7 @@
       "id": "titlebar-colorizer-multi@uncledan.it",
       "strict_min_version": "142.0",
       "data_collection_permissions": {
-        "required": ["none"],
-        "optional": ["none"]
+        "required": ["none"]
       }
     }
   },
