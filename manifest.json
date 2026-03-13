@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "Titlebar Colorizer - Firefox, LibreWolf e Thunderbird",
-  "version": "0.2",
+  "name": "Titlebar Colorizer Multi - Firefox, LibreWolf e Thunderbird",
+  "version": "0.3",
   "author": "Daniele Lolli (UncleDan)",
-  "description": "Personalize the titlebar color with automatic contrast calculation for Firefox, LibreWolf and Thunderbird.",
+  "description": "Customize the titlebar color with automatic contrast calculation for Firefox, LibreWolf and Thunderbird.",
   "developer": {
     "name": "Daniele Lolli (UncleDan)",
     "url": "https://danielelolli.it" 
