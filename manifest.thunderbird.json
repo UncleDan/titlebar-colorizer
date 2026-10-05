@@ -1,5 +1,7 @@
 {
-  "_comment": "Overlay unito a manifest.json SOLO nella build Thunderbird (make-zip.cmd). Non usarlo per Firefox/LibreWolf: lì theme_experiment blocca theme.update.",
+  "_comment": "Overlay unito a manifest.json SOLO nella build Thunderbird (make-zip.cmd): le chiavi qui sostituiscono/aggiungono quelle di manifest.json. Non usarlo per Firefox/LibreWolf: lì theme_experiment blocca theme.update.",
+  "name": "Titlebar Colorizer Multi - Thunderbird",
+  "description": "Customize the Thunderbird titlebar, toolbars and buttons color with automatic WCAG contrast.",
   "theme_experiment": {
     "colors": {
       "tc_frame": "--lwt-frame",

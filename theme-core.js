@@ -1,4 +1,4 @@
-// theme-core.js by Daniele Lolli (UncleDan) feat. Claude AI - Release 2.0b3 - 2026-10-05 17-26-08
+// theme-core.js by Daniele Lolli (UncleDan) feat. Claude AI - Release 2.0b4 - 2026-10-05 17-38-25
 // Logica condivisa (background + pagina opzioni): calcolo contrasto e palette completa del tema.
 "use strict";
 

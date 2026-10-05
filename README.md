@@ -2,7 +2,21 @@
 
 Customize the titlebar color with automatic contrast calculation for Firefox, LibreWolf and Thunderbird.
 
+## Build
+
+Single source tree, two packages produced by `make-zip.cmd`:
+
+| Package | Manifest | Store |
+|---|---|---|
+| `…-firefox.xpi` | `manifest.json` as is — "Titlebar Colorizer Multi" | addons.mozilla.org |
+| `…-thunderbird.xpi` | `manifest.json` + overlay `manifest.thunderbird.json` — "Titlebar Colorizer Multi - Thunderbird" | addons.thunderbird.net |
+
+Keys in `manifest.thunderbird.json` (except those starting with `_`) replace or add the same keys of `manifest.json` only at build time.
+
 ## Changelog
+
+### 2.0b4
+- The Thunderbird package is published separately as "Titlebar Colorizer Multi - Thunderbird" (name and description set by the build overlay; source unchanged).
 
 ### 2.0b3
 - Thunderbird: buttons (quick filter bar, pin, folder pane "…" menu, etc.) are now colored too instead of staying gray (`--button-*` variables mapped via `theme_experiment`). Toolbar button hover/pressed colors use the standard `button_background_hover`/`button_background_active` keys.

@@ -1,8 +1,8 @@
 @echo off
-:: make-zip.cmd by Daniele Lolli (UncleDan) feat. Claude AI - Release 2.0b3 - 2026-10-05 17-26-08
+:: make-zip.cmd by Daniele Lolli (UncleDan) feat. Claude AI - Release 2.0b4 - 2026-10-05 17-38-25
 :: Crea due pacchetti in dist\:
 ::   <cartella>-<versione>-firefox.xpi      Firefox / LibreWolf (manifest.json invariato)
-::   <cartella>-<versione>-thunderbird.xpi  Thunderbird (manifest.json + manifest.thunderbird.json)
+::   <cartella>-<versione>-thunderbird.xpi  Thunderbird (manifest.json + manifest.thunderbird.json: nome "... - Thunderbird")
 setlocal enabledelayedexpansion
 
 set "SCRIPT_DIR=%~dp0"
@@ -11,7 +11,7 @@ for %%I in ("%SCRIPT_DIR%") do set "FOLDER_NAME=%%~nxI"
 set "SEVENZIP=C:\Program Files\7-Zip\7z.exe"
 
 :: Versione: version_name (es. 2.0b2) se presente, altrimenti version
-for /f "delims=" %%V in ('powershell -NoProfile -Command "$m = Get-Content -Raw '%SCRIPT_DIR%\manifest.json' | ConvertFrom-Json; if ($m.version_name) { $m.version_name } else { $m.version }"') do set "VERSION=%%V"
+for /f "delims=" %%V in ('powershell -NoProfile -Command "$m = Get-Content -Raw -Encoding UTF8 '%SCRIPT_DIR%\manifest.json' | ConvertFrom-Json; if ($m.version_name) { $m.version_name } else { $m.version }"') do set "VERSION=%%V"
 if "%VERSION%"=="" (
     echo ERROR: Could not read version from manifest.json
     pause
@@ -49,7 +49,7 @@ if errorlevel 1 goto fail
 :: 2) Pacchetto Thunderbird: stessa base + manifest unito con l'overlay
 set "TMPDIR=%TEMP%\%FOLDER_NAME%-tb-%RANDOM%"
 mkdir "%TMPDIR%"
-powershell -NoProfile -Command "$m = Get-Content -Raw '%SCRIPT_DIR%\manifest.json' | ConvertFrom-Json; $t = Get-Content -Raw '%SCRIPT_DIR%\manifest.thunderbird.json' | ConvertFrom-Json; foreach ($p in $t.PSObject.Properties) { if ($p.Name -notlike '_*') { $m | Add-Member -Force -NotePropertyName $p.Name -NotePropertyValue $p.Value } }; [IO.File]::WriteAllText('%TMPDIR%\manifest.json', ($m | ConvertTo-Json -Depth 20), (New-Object Text.UTF8Encoding $false))"
+powershell -NoProfile -Command "$m = Get-Content -Raw -Encoding UTF8 '%SCRIPT_DIR%\manifest.json' | ConvertFrom-Json; $t = Get-Content -Raw -Encoding UTF8 '%SCRIPT_DIR%\manifest.thunderbird.json' | ConvertFrom-Json; foreach ($p in $t.PSObject.Properties) { if ($p.Name -notlike '_*') { $m | Add-Member -Force -NotePropertyName $p.Name -NotePropertyValue $p.Value } }; [IO.File]::WriteAllText('%TMPDIR%\manifest.json', ($m | ConvertTo-Json -Depth 20), (New-Object Text.UTF8Encoding $false))"
 if errorlevel 1 goto fail
 copy /y "%OUT_FF%" "%OUT_TB%" >nul
 "%SEVENZIP%" a -tzip -mx=9 "%OUT_TB%" "%TMPDIR%\manifest.json"
