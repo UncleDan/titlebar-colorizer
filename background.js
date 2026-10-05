@@ -1,27 +1,27 @@
-function getContrastColor(hex) {
-    const r = parseInt(hex.slice(1, 3), 16);
-    const g = parseInt(hex.slice(3, 5), 16);
-    const b = parseInt(hex.slice(5, 7), 16);
-    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-    return (luminance > 0.5) ? "#000000" : "#ffffff";
-}
+// background.js by Daniele Lolli (UncleDan) feat. Claude AI - Release 2.0.3 - 2026-10-05 18-02-55
+"use strict";
 
-function applyStoredTheme() {
-    browser.storage.local.get("savedColor").then((res) => {
-        if (res.savedColor) {
-            const color = res.savedColor;
-            const textColor = getContrastColor(color);
-            browser.theme.update({
-                colors: {
-                    frame: color,
-                    tab_background_text: textColor,
-                    toolbar_field_text: textColor,
-                    icons: textColor
-                }
-            });
+// Listener registrati a livello top: con la background "event page" (non persistente)
+// servono perché Thunderbird/Firefox riavviino lo script all'avvio e all'aggiornamento.
+browser.runtime.onStartup.addListener(() => { tcApplyStoredTheme(); });
+browser.runtime.onInstalled.addListener(() => { tcApplyStoredTheme(); });
+
+// La pagina opzioni salva soltanto: il tema lo applica sempre il background
+browser.storage.onChanged.addListener((changes, area) => {
+    if (area !== "local") return;
+    if ("savedColor" in changes || "schemeMode" in changes || "contrastLevel" in changes) {
+        if ("savedColor" in changes && !changes.savedColor.newValue) {
+            browser.theme.reset();
+        } else {
+            tcApplyStoredTheme();
         }
-    });
-}
+    }
+});
 
-// Applica al caricamento dell'estensione
-applyStoredTheme();
+// Clic sull'icona in barra: apre le opzioni
+browser.action.onClicked.addListener(() => {
+    browser.runtime.openOptionsPage();
+});
+
+// Applica anche al semplice caricamento dello script
+tcApplyStoredTheme();
