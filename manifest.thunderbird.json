@@ -4,7 +4,12 @@
     "colors": {
       "tc_frame": "--lwt-frame",
       "tc_spaces_bg": "--spaces-bg-color",
-      "tc_spaces_text": "--spaces-button-text-color"
+      "tc_spaces_text": "--spaces-button-text-color",
+      "tc_button_bg": "--button-background-color",
+      "tc_button_text": "--button-text-color",
+      "tc_button_border": "--button-border-color",
+      "tc_button_hover_bg": "--button-hover-background-color",
+      "tc_button_active_bg": "--button-active-background-color"
     }
   }
 }

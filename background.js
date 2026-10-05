@@ -1,4 +1,4 @@
-// background.js by Daniele Lolli (UncleDan) feat. Claude AI - Release 2.0b2 - 2026-10-05 17-14-34
+// background.js by Daniele Lolli (UncleDan) feat. Claude AI - Release 2.0b3 - 2026-10-05 17-26-08
 "use strict";
 
 // Listener registrati a livello top: con la background "event page" (non persistente)
@@ -9,7 +9,7 @@ browser.runtime.onInstalled.addListener(() => { tcApplyStoredTheme(); });
 // La pagina opzioni salva soltanto: il tema lo applica sempre il background
 browser.storage.onChanged.addListener((changes, area) => {
     if (area !== "local") return;
-    if ("savedColor" in changes || "schemeMode" in changes) {
+    if ("savedColor" in changes || "schemeMode" in changes || "contrastLevel" in changes) {
         if ("savedColor" in changes && !changes.savedColor.newValue) {
             browser.theme.reset();
         } else {

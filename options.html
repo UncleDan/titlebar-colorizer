@@ -18,7 +18,9 @@
         .preview { margin-top: 15px; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; font-size: 13px; }
         .pv-frame { padding: 8px 12px; font-weight: bold; }
         .pv-toolbar { padding: 6px 12px; }
-        .pv-field { display: block; padding: 4px 8px; border: 1px solid; border-radius: 4px; }
+        .pv-toolbar { display: flex; gap: 8px; align-items: center; }
+        .pv-field { flex: 1; padding: 4px 8px; border: 1px solid; border-radius: 4px; }
+        .pv-button { padding: 4px 10px; border: 1px solid; border-radius: 3px; }
         .pv-sidebar { padding: 8px 12px; }
         .info { font-size: 12px; color: var(--muted); margin-top: 8px; }
         button { margin-top: 15px; width: 100%; padding: 8px; border: 1px solid var(--line); border-radius: 4px; background: var(--card); color: var(--text); cursor: pointer; }
@@ -52,9 +54,18 @@
             </select>
         </div>
 
+        <div class="field">
+            <label for="contrastLevel">Contrasto minimo testo/sfondo (WCAG)</label>
+            <select id="contrastLevel">
+                <option value="aaa">AAA – 7:1 (consigliato)</option>
+                <option value="aa">AA – 4,5:1</option>
+                <option value="off">Nessuno (colore esatto)</option>
+            </select>
+        </div>
+
         <div class="preview">
             <div id="pvFrame" class="pv-frame">Barra del titolo / schede</div>
-            <div id="pvToolbar" class="pv-toolbar"><span id="pvField" class="pv-field">Campo di ricerca</span></div>
+            <div id="pvToolbar" class="pv-toolbar"><span id="pvField" class="pv-field">Campo di ricerca</span> <span id="pvButton" class="pv-button">Pulsante</span></div>
             <div id="pvSidebar" class="pv-sidebar">Pannello cartelle / sidebar</div>
         </div>
         <div id="pvInfo" class="info"></div>

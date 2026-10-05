@@ -1,10 +1,12 @@
-// options.js by Daniele Lolli (UncleDan) feat. Claude AI - Release 2.0b2 - 2026-10-05 17-14-34
+// options.js by Daniele Lolli (UncleDan) feat. Claude AI - Release 2.0b3 - 2026-10-05 17-26-08
 "use strict";
 
 const colorPicker = document.getElementById("colorPicker");
 const hexInput = document.getElementById("hexInput");
 const rgbInput = document.getElementById("rgbInput");
 const schemeSelect = document.getElementById("schemeMode");
+const contrastSelect = document.getElementById("contrastLevel");
+const pvButton = document.getElementById("pvButton");
 const resetBtn = document.getElementById("resetBtn");
 const pvFrame = document.getElementById("pvFrame");
 const pvToolbar = document.getElementById("pvToolbar");
@@ -15,8 +17,9 @@ const pvInfo = document.getElementById("pvInfo");
 let currentHex = TC_DEFAULTS.savedColor;
 let saveTimer = null;
 
-function renderPreview(hex, mode) {
-    const t = tcBuildTheme(hex, mode).colors;
+function renderPreview(hex) {
+    const theme = tcBuildTheme(hex, schemeSelect.value, contrastSelect.value);
+    const t = theme.colors, m = theme.meta;
     pvFrame.style.backgroundColor = t.frame;
     pvFrame.style.color = t.tab_background_text;
     pvToolbar.style.backgroundColor = t.toolbar;
@@ -24,11 +27,21 @@ function renderPreview(hex, mode) {
     pvField.style.backgroundColor = t.toolbar_field;
     pvField.style.color = t.toolbar_field_text;
     pvField.style.borderColor = t.toolbar_field_border;
+    pvButton.style.backgroundColor = m.button;
+    pvButton.style.color = t.toolbar_text;
+    pvButton.style.borderColor = t.toolbar_field_border;
     pvSidebar.style.backgroundColor = t.sidebar;
     pvSidebar.style.color = t.sidebar_text;
-    const ratio = tcContrastRatio(t.frame, t.tab_background_text).toFixed(1);
-    const dark = tcBuildTheme(hex, mode).properties.color_scheme === "dark";
-    pvInfo.textContent = `Schema: ${dark ? "scuro" : "chiaro"} · contrasto testo/barra ${ratio}:1`;
+
+    // Contrasto minimo fra tutte le coppie testo/sfondo del tema
+    const fg = t.tab_background_text;
+    const worst = Math.min(...[t.frame, t.toolbar, t.toolbar_field, t.toolbar_field_focus, t.popup,
+        t.sidebar, t.sidebar_highlight, m.button, t.button_background_hover, t.button_background_active]
+        .map(bg => tcContrastRatio(bg, fg)));
+    const level = worst >= 7 ? "AAA" : worst >= 4.5 ? "AA" : worst >= 3 ? "AA solo testo grande" : "insufficiente";
+    let info = `Schema ${m.dark ? "scuro" : "chiaro"} · contrasto minimo ${worst.toFixed(1)}:1 (${level})`;
+    if (m.adjusted) info += ` · colore applicato ${m.applied} (scelto ${m.chosen}, adattato per il contrasto)`;
+    pvInfo.textContent = info;
 }
 
 function updateAll(hex, source) {
@@ -40,12 +53,12 @@ function updateAll(hex, source) {
     if (source !== "hex") hexInput.value = hex;
     if (source !== "rgb") rgbInput.value = tcHexToRgb(hex).join(", ");
 
-    renderPreview(hex, schemeSelect.value);
+    renderPreview(hex);
 
     // Il color picker emette molti eventi: salvataggio con piccolo ritardo
     clearTimeout(saveTimer);
     saveTimer = setTimeout(() => {
-        browser.storage.local.set({ savedColor: hex, schemeMode: schemeSelect.value });
+        browser.storage.local.set({ savedColor: hex, schemeMode: schemeSelect.value, contrastLevel: contrastSelect.value });
     }, source === "picker" ? 120 : 0);
 }
 
@@ -61,26 +74,29 @@ rgbInput.addEventListener("change", e => {
 });
 
 schemeSelect.addEventListener("change", () => updateAll(currentHex, "scheme"));
+contrastSelect.addEventListener("change", () => updateAll(currentHex, "contrast"));
 
 resetBtn.addEventListener("click", async () => {
     clearTimeout(saveTimer);
-    await browser.storage.local.remove(["savedColor", "schemeMode"]);
+    await browser.storage.local.remove(["savedColor", "schemeMode", "contrastLevel"]);
     await browser.theme.reset();
     schemeSelect.value = TC_DEFAULTS.schemeMode;
+    contrastSelect.value = TC_DEFAULTS.contrastLevel;
     currentHex = TC_DEFAULTS.savedColor;
     colorPicker.value = currentHex;
     hexInput.value = "";
     rgbInput.value = "";
-    renderPreview(currentHex, schemeSelect.value);
+    renderPreview(currentHex);
     pvInfo.textContent = "Tema originale ripristinato.";
 });
 
 // Caricamento iniziale (non salva nulla finché l'utente non cambia qualcosa)
 tcLoadSettings().then(s => {
     schemeSelect.value = s.schemeMode;
+    contrastSelect.value = s.contrastLevel;
     currentHex = s.savedColor || TC_DEFAULTS.savedColor;
     colorPicker.value = currentHex;
     hexInput.value = s.savedColor || "";
     rgbInput.value = s.savedColor ? tcHexToRgb(currentHex).join(", ") : "";
-    renderPreview(currentHex, s.schemeMode);
+    renderPreview(currentHex);
 });

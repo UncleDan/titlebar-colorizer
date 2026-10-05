@@ -4,6 +4,11 @@ Customize the titlebar color with automatic contrast calculation for Firefox, Li
 
 ## Changelog
 
+### 2.0b3
+- Thunderbird: buttons (quick filter bar, pin, folder pane "…" menu, etc.) are now colored too instead of staying gray (`--button-*` variables mapped via `theme_experiment`). Toolbar button hover/pressed colors use the standard `button_background_hover`/`button_background_active` keys.
+- WCAG contrast: new option *Minimum contrast* — AAA 7:1 (default), AA 4.5:1, none. Every text/background pair of the theme reaches the chosen ratio; when needed the base color is darkened or lightened just enough (the options page shows the applied color and the worst contrast ratio).
+- In automatic mode white or black text is chosen according to which needs the smallest change to the chosen color.
+
 ### 2.0b2
 - Fix Thunderbird 157+: the unified toolbar (top) and the status bar stayed with the system color (e.g. Windows blue accent) instead of the chosen color. Thunderbird 157 reads the CSS variable `--lwt-frame`, which the Gecko theme engine does not set (it still sets `--lwt-accent-color`). The Thunderbird build maps the color onto `--lwt-frame` through a `theme_experiment`; the spaces toolbar (left) is colored too.
 - Two packages: `-firefox.xpi` (Firefox/LibreWolf, unchanged manifest) and `-thunderbird.xpi` (manifest merged with `manifest.thunderbird.json`). They must stay separate: on Firefox release a `theme_experiment` blocks `theme.update` entirely.
