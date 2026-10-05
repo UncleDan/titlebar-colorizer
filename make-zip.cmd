@@ -1,5 +1,5 @@
 @echo off
-:: make-zip.cmd by Daniele Lolli (UncleDan) feat. Claude AI - Release 2.0b4 - 2026-10-05 17-38-25
+:: make-zip.cmd by Daniele Lolli (UncleDan) feat. Claude AI - Release 2.0 - 2026-10-05 17-45-07
 :: Crea due pacchetti in dist\:
 ::   <cartella>-<versione>-firefox.xpi      Firefox / LibreWolf (manifest.json invariato)
 ::   <cartella>-<versione>-thunderbird.xpi  Thunderbird (manifest.json + manifest.thunderbird.json: nome "... - Thunderbird")
@@ -10,7 +10,7 @@ set "SCRIPT_DIR=%SCRIPT_DIR:~0,-1%"
 for %%I in ("%SCRIPT_DIR%") do set "FOLDER_NAME=%%~nxI"
 set "SEVENZIP=C:\Program Files\7-Zip\7z.exe"
 
-:: Versione: version_name (es. 2.0b2) se presente, altrimenti version
+:: Versione: version_name (es. 2.0 o 2.1b1) se presente, altrimenti version
 for /f "delims=" %%V in ('powershell -NoProfile -Command "$m = Get-Content -Raw -Encoding UTF8 '%SCRIPT_DIR%\manifest.json' | ConvertFrom-Json; if ($m.version_name) { $m.version_name } else { $m.version }"') do set "VERSION=%%V"
 if "%VERSION%"=="" (
     echo ERROR: Could not read version from manifest.json

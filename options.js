@@ -1,4 +1,4 @@
-// options.js by Daniele Lolli (UncleDan) feat. Claude AI - Release 2.0b4 - 2026-10-05 17-38-25
+// options.js by Daniele Lolli (UncleDan) feat. Claude AI - Release 2.0 - 2026-10-05 17-45-07
 "use strict";
 
 const colorPicker = document.getElementById("colorPicker");

@@ -15,6 +15,10 @@ Keys in `manifest.thunderbird.json` (except those starting with `_`) replace or 
 
 ## Changelog
 
+### 2.0
+- First stable release of the 2.0 series (includes all changes of 2.0b1–2.0b4 below).
+- Two separate listings: "Titlebar Colorizer Multi" (Firefox/LibreWolf, addons.mozilla.org) and "Titlebar Colorizer Multi - Thunderbird" (addons.thunderbird.net), built from the same source.
+
 ### 2.0b4
 - The Thunderbird package is published separately as "Titlebar Colorizer Multi - Thunderbird" (name and description set by the build overlay; source unchanged).
 
@@ -35,5 +39,5 @@ Keys in `manifest.thunderbird.json` (except those starting with `_`) replace or 
 - New button: restore original theme.
 - Migrated to Manifest V3 (event page with `runtime.onStartup`/`onInstalled` listeners, `action` instead of `browser_action`) for current Thunderbird (157+) and Firefox/LibreWolf. Minimum version: 140 (ESR).
 - Clicking the toolbar icon opens the options page.
-- Versioning: beta `2.0bN` is published as `version` `1.99.N` (AMO only accepts numeric versions) with `version_name` `2.0bN`; the final release will be `2.0`.
+- Versioning: betas `2.0bN` were published as `version` `1.99.N` (AMO only accepts numeric versions) with `version_name` `2.0bN`; the final release is `2.0`.
 - `make-zip.bat` replaced by `make-zip.cmd` (uses `version_name` for the file name).
