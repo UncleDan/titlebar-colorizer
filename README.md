@@ -16,7 +16,7 @@ Keys in `manifest.thunderbird.json` (except those starting with `_`) replace or 
 ## Changelog
 
 ### 2.0.2
-- Store banners in `store/` (1400×560 marquee and 440×280 small tile, PNG + SVG source); the folder is excluded from the packages.
+- Store images in `store/`: banners 1400×560 and 440×280 (PNG + SVG source) and preview screenshot 1280×800; the folder is excluded from the packages.
 
 ### 2.0.1
 - Icons in PNG 16/32/48/64/96/128/256/512 (64 px required by the store listing).
