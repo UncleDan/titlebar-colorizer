@@ -1,19 +1,22 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Titlebar Colorizer Multi",
-  "version": "1.0.1",
+  "version": "1.99.1",
+  "version_name": "2.0b1",
   "author": "Daniele Lolli (UncleDan)",
   "description": "Customize the titlebar color with automatic contrast calculation for Firefox, LibreWolf and Thunderbird.",
   "developer": {
     "name": "Daniele Lolli (UncleDan)",
-    "url": "https://danielelolli.it" 
+    "url": "https://danielelolli.it"
   },
   "browser_specific_settings": {
     "gecko": {
       "id": "titlebar-colorizer-multi@uncledan.it",
       "strict_min_version": "140.0",
       "data_collection_permissions": {
-        "required": ["none"]
+        "required": [
+          "none"
+        ]
       }
     }
   },
@@ -21,16 +24,21 @@
     "48": "icons/icon48.png",
     "96": "icons/icon96.png"
   },
-  "permissions": ["theme", "storage"],
+  "permissions": [
+    "theme",
+    "storage"
+  ],
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+    "scripts": [
+      "theme-core.js",
+      "background.js"
+    ]
   },
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true
   },
-  "browser_action": {
+  "action": {
     "default_icon": "icons/icon48.png",
     "default_title": "Configure Titlebar"
   }
