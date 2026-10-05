@@ -4,3 +4,5 @@ README.md
 .git
 .gitignore
 dist
+icons/icon32-64-128.png
+icons/icon32-64-128.xcf

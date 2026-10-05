@@ -57,3 +57,7 @@ Thumbs.db
 *.flv
 *.mov
 *.wmv
+
+# Project specific exclusions
+icons/icon32-64-128.png
+icons/icon32-64-128.xcf
