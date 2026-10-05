@@ -1,4 +1,4 @@
-// theme-core.js by Daniele Lolli (UncleDan) feat. Claude AI - Release 2.0b1 - 2026-10-05 17-03-03
+// theme-core.js by Daniele Lolli (UncleDan) feat. Claude AI - Release 2.0b2 - 2026-10-05 17-14-34
 // Logica condivisa (background + pagina opzioni): calcolo contrasto e palette completa del tema.
 "use strict";
 
@@ -89,7 +89,7 @@ function tcBuildTheme(baseHex, schemeMode) {
     const separator = tcMix(base, fg, 0.18);
     const accent = tcMix(fg, base, 0.25);
 
-    return {
+    const theme = {
         colors: {
             frame: base,
             frame_inactive: tcMix(base, ink, 0.06),
@@ -136,6 +136,26 @@ function tcBuildTheme(baseHex, schemeMode) {
             content_color_scheme: "system"
         }
     };
+
+    // Solo build Thunderbird (manifest con "theme_experiment"):
+    // da Thunderbird 157 la barra unificata e la barra di stato leggono la variabile
+    // CSS --lwt-frame, che il motore dei temi non imposta più (resta --lwt-accent-color).
+    // Senza questo mapping lì compare il colore di sistema (es. accento blu di Windows).
+    if (tcHasThemeExperiment()) {
+        theme.colors.tc_frame = base;
+        theme.colors.tc_spaces_bg = base;
+        theme.colors.tc_spaces_text = fg;
+    }
+    return theme;
+}
+
+function tcHasThemeExperiment() {
+    try {
+        const exp = browser.runtime.getManifest().theme_experiment;
+        return !!(exp && exp.colors && exp.colors.tc_frame);
+    } catch (e) {
+        return false;
+    }
 }
 
 async function tcLoadSettings() {

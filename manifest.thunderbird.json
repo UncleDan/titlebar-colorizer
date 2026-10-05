@@ -1,0 +1,10 @@
+{
+  "_comment": "Overlay unito a manifest.json SOLO nella build Thunderbird (make-zip.cmd). Non usarlo per Firefox/LibreWolf: lì theme_experiment blocca theme.update.",
+  "theme_experiment": {
+    "colors": {
+      "tc_frame": "--lwt-frame",
+      "tc_spaces_bg": "--spaces-bg-color",
+      "tc_spaces_text": "--spaces-button-text-color"
+    }
+  }
+}

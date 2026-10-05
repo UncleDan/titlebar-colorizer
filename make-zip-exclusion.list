@@ -8,3 +8,5 @@ README.md
 dist
 icons/icon32-64-128.png
 icons/icon32-64-128.xcf
+manifest.thunderbird.json
+icons/icon.svg
