@@ -15,6 +15,9 @@ Keys in `manifest.thunderbird.json` (except those starting with `_`) replace or 
 
 ## Changelog
 
+### 2.0.3
+- Manifest: `browser_specific_settings.gecko_android.strict_min_version` set to 142.0 (first Firefox for Android supporting `data_collection_permissions`), removing the AMO validation warning. Desktop minimum stays 140.
+
 ### 2.0.2
 - Store images in `store/`: banners 1400×560 and 440×280 (PNG + SVG source) and preview screenshot 1280×800; the folder is excluded from the packages.
 
