@@ -1,5 +1,5 @@
 @echo off
-:: make-zip.cmd by Daniele Lolli (UncleDan) feat. Claude AI - Release 2.0 - 2026-10-05 17-45-07
+:: make-zip.cmd by Daniele Lolli (UncleDan) feat. Claude AI - Release 2.0.2 - 2026-10-05 17-53-23
 :: Crea due pacchetti in dist\:
 ::   <cartella>-<versione>-firefox.xpi      Firefox / LibreWolf (manifest.json invariato)
 ::   <cartella>-<versione>-thunderbird.xpi  Thunderbird (manifest.json + manifest.thunderbird.json: nome "... - Thunderbird")

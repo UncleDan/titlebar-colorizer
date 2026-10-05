@@ -15,6 +15,12 @@ Keys in `manifest.thunderbird.json` (except those starting with `_`) replace or 
 
 ## Changelog
 
+### 2.0.2
+- Store banners in `store/` (1400×560 marquee and 440×280 small tile, PNG + SVG source); the folder is excluded from the packages.
+
+### 2.0.1
+- Icons in PNG 16/32/48/64/96/128/256/512 (64 px required by the store listing).
+
 ### 2.0
 - First stable release of the 2.0 series (includes all changes of 2.0b1–2.0b4 below).
 - Two separate listings: "Titlebar Colorizer Multi" (Firefox/LibreWolf, addons.mozilla.org) and "Titlebar Colorizer Multi - Thunderbird" (addons.thunderbird.net), built from the same source.

@@ -1,4 +1,4 @@
-// background.js by Daniele Lolli (UncleDan) feat. Claude AI - Release 2.0 - 2026-10-05 17-45-07
+// background.js by Daniele Lolli (UncleDan) feat. Claude AI - Release 2.0.2 - 2026-10-05 17-53-23
 "use strict";
 
 // Listener registrati a livello top: con la background "event page" (non persistente)
